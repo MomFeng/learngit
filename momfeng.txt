@@ -1,0 +1,118 @@
+GIT基本命令
+
+1.获取当前远程仓库路径	git remote -v
+
+2.获取当前用户信息	git config user.name
+				git config user.email
+
+3.更改当前用户信息	git config —-global user.name “momfeng”
+				git config —-global user.email “@.com”
+
+4.初始化git版本仓库	git init
+
+5.git add readme.txt
+
+6.git commit -m “first commit”
+
+7.对比文件的修改	git diff [raedme,txt]
+
+8.查看当前提交日志	git log
+
+9.回退到上一个版本	git reset --hard Head^
+Ps:上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。
+
+10.指定跳转到某一个版本	git reset --hard [1094a]
+Ps:版本号无需写全，git会自动查找
+
+11.记录你每次都回退版本操作	git reflog
+
+12.查看工作区版本库和最新版本库的区别	git diff HEAD — readme.txt
+
+13.取消文件在工作区的更改	git checkout -- [readme.txt]
+
+14.取消文件在缓存区的更改	git reset HEAD [file]
+
+15.从版本库中删除文件	git rm [文件名]
+
+16.创建ssh key	ssh-keygen -t rsa -C "youremail@example.com”
+
+17.把已有仓库与git关联	
+git remote add origin [git@github.com:MomFeng/gitStudy.git]
+
+18.推送代码到远程仓库	git pull —rebase	将提交约线图平坦化
+				git merge --no-ff	刻意制造分叉。
+Ps：与git pull git merge效果一样
+
+19.解除关联远程仓库	git remote remove origin
+
+20.新建分支	git branch [name]
+
+21.将本地代码推送到分支	git push -u origin [name]
+
+22.将本地代码推送到远程仓库，用于完成第一次推送	git push -u origin master
+Ps：以后再次推送只需git push
+
+23.合并远程分支的内容	git pull --rebase origin master
+
+24.创建分支并切换到分支	git checkout -b dev
+Ps:相当于两条命令使用	git branch dev
+				git checkout dev
+
+25.查看当前分支状态	git branch(当前分支前面会标一个*号)
+
+26.切换分支	git checkout master
+
+27.将分支dev的内容合并到master上	git merge devgitgit 
+
+28.删除分支	git branch -d dev
+Ps：无视警告，强制删除git branch -D dev
+
+29.以图形结构图来显示提交状态树	git log --graph --pretty=oneline --abbrev-commit
+Ps:这个命令也可以显示图形	git log —graph
+    不显示图，显示版本编号	git log --pretty=oneline --abbrev-commit
+
+30.合并分支	git merge --no-ff -m "merge with no-ff” dev
+Ps:合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
+Ps:不用--no-ff，实际上只是将master的指针update成dev分支而已，用的还是dev的commit ID，而使用之后，则是重新commit了一哈，有了新的commit ID
+
+31.保存当前的工作状态	git stash
+Ps:并非提交，而是暂存起来，然后清空了工作区
+
+32.查看之前缓存的工作状态列表	git stash list
+
+33.恢复到之前到工作状态缓存	git stash apply
+
+34.删除掉stash的内容	git stash drop
+
+35.恢复缓存的同时并且删除	git stash pop
+
+36.恢复到指定的缓存	git stash apply stash@{0}
+
+37.关联本地dev分支与远程dev分支	git push --set-upstream origin dev
+
+38.打标签	git tag [v1.0]
+
+39.对指定版本打标签	git tag [v0.9] [0998940]
+
+40.查看当前所有标签	git tag
+
+41.查看具体一个标签的信息	git show v1.0
+
+42,指定打标签的信息	git tag -a <tagname> -m "blablabla…"
+
+43.推送某个标签到远程	git push origin v1.0
+
+44.推送全部标签到远程	git push origin —tags
+
+45.删除远程标签，先删除本地标签，再删除远程标签
+	删除本地标签	git tag -d v0.9
+	再删除远程标签	git push origin :refs/tags/v0.9
+
+
+
+
+
+
+
+
+
